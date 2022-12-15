@@ -25,7 +25,7 @@ jobs:
     container: 
       image: avdteam/avd-all-in-one
       volumes:
-        - $(pwd):/home/avd/projects/
+        - arista-ci:/home/avd/projects/
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
