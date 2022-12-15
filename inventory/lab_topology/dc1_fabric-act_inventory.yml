@@ -1,0 +1,144 @@
+veos:
+  # Define the global vEOS node parameters
+  username: cvpadmin
+  password: arista123
+  version: 4.28.4M
+
+generic:
+  # Define global generic node parameters
+  username: cvpadmin
+  password: arista123
+  version: Rocky-8.5
+
+cvp:
+  # Define global cvp node parameters
+  username: root
+  password: cvproot
+  version: 2022.2.1
+  instance: singlenode
+
+# List of ACT nodes
+nodes:
+  - dc1-leaf1a:
+      ip_addr: 192.168.1.152
+      node_type: veos
+      version: 4.28.4M
+      neighbors:
+        - neighborDevice: dc1-spine1
+          neighborPort: Ethernet1
+          port: Ethernet1
+        - neighborDevice: dc1-spine2
+          neighborPort: Ethernet1
+          port: Ethernet2
+        - neighborDevice: dc1-leaf1b
+          neighborPort: Ethernet3
+          port: Ethernet3
+        - neighborDevice: dc1-leaf1b
+          neighborPort: Ethernet4
+          port: Ethernet4
+      ports:
+        - Ethernet8
+
+  - dc1-leaf1b:
+      ip_addr: 192.168.1.153
+      node_type: veos
+      version: 4.28.4M
+      neighbors:
+        - neighborDevice: dc1-spine1
+          neighborPort: Ethernet2
+          port: Ethernet1
+        - neighborDevice: dc1-spine2
+          neighborPort: Ethernet2
+          port: Ethernet2
+        - neighborDevice: dc1-leaf1a
+          neighborPort: Ethernet3
+          port: Ethernet3
+        - neighborDevice: dc1-leaf1a
+          neighborPort: Ethernet4
+          port: Ethernet4
+      ports:
+        - Ethernet8
+
+  - dc1-leaf2a:
+      ip_addr: 192.168.1.154
+      node_type: veos
+      version: 4.28.4M
+      neighbors:
+        - neighborDevice: dc1-spine1
+          neighborPort: Ethernet3
+          port: Ethernet1
+        - neighborDevice: dc1-spine2
+          neighborPort: Ethernet3
+          port: Ethernet2
+        - neighborDevice: dc1-leaf2b
+          neighborPort: Ethernet3
+          port: Ethernet3
+        - neighborDevice: dc1-leaf2b
+          neighborPort: Ethernet4
+          port: Ethernet4
+      ports: []
+
+  - dc1-leaf2b:
+      ip_addr: 192.168.1.155
+      node_type: veos
+      version: 4.28.4M
+      neighbors:
+        - neighborDevice: dc1-spine1
+          neighborPort: Ethernet4
+          port: Ethernet1
+        - neighborDevice: dc1-spine2
+          neighborPort: Ethernet4
+          port: Ethernet2
+        - neighborDevice: dc1-leaf2a
+          neighborPort: Ethernet3
+          port: Ethernet3
+        - neighborDevice: dc1-leaf2a
+          neighborPort: Ethernet4
+          port: Ethernet4
+      ports: []
+
+  - dc1-spine1:
+      ip_addr: 192.168.1.150
+      node_type: veos
+      version: 4.28.4M
+      neighbors:
+        - neighborDevice: dc1-leaf1a
+          neighborPort: Ethernet1
+          port: Ethernet1
+        - neighborDevice: dc1-leaf1b
+          neighborPort: Ethernet1
+          port: Ethernet2
+        - neighborDevice: dc1-leaf2a
+          neighborPort: Ethernet1
+          port: Ethernet3
+        - neighborDevice: dc1-leaf2b
+          neighborPort: Ethernet1
+          port: Ethernet4
+      ports: []
+
+  - dc1-spine2:
+      ip_addr: 192.168.1.151
+      node_type: veos
+      version: 4.28.4M
+      neighbors:
+        - neighborDevice: dc1-leaf1a
+          neighborPort: Ethernet2
+          port: Ethernet1
+        - neighborDevice: dc1-leaf1b
+          neighborPort: Ethernet2
+          port: Ethernet2
+        - neighborDevice: dc1-leaf2a
+          neighborPort: Ethernet2
+          port: Ethernet3
+        - neighborDevice: dc1-leaf2b
+          neighborPort: Ethernet2
+          port: Ethernet4
+      ports: []
+
+  - cvp:
+      ip_addr: 192.168.1.140
+      node_type: cvp
+
+  - ansible:
+      ip_addr: 192.168.1.141
+      node_type: generic

@@ -1,0 +1,47 @@
+---
+port_profiles:
+  TENANT_A:
+    mode: access
+    vlans: "110"
+  TENANT_A_113:
+    mode: access
+    vlans: "113"
+  DOT1X_IDF:
+    mode: trunk
+    dot1x:
+      port_control: auto
+      reauthentication: true
+      pae:
+        mode: "authenticator"
+      authentication_failure:
+        action: drop
+      host_mode:
+        mode: "multi-host"
+        multi_host_authenticated: true
+      mac_based_authentication:
+        enabled: true
+        always: false
+        host_mode_common: false
+      timeout:
+        quiet_period: 30
+        reauth_period: 43200
+        reauth_timeout_ignore: true
+        tx_period: 30
+      reauthorization_request_limit: 3
+
+servers:
+  server01:
+    rack: RackA
+    adapters:
+      - endpoint_ports: [Eth0, Eth1]
+        switch_ports: [Ethernet8, Ethernet8]
+        switches: [dc1-leaf1a, dc1-leaf1b]
+        profile: TENANT_A
+        port_channel:
+          mode: active
+      - endpoint_ports: [Eth2, Eth3]
+        switch_ports: [Ethernet7, Ethernet8, Ethernet7, Ethernet8]
+        switches: [dc1-leaf1a, dc1-leaf1a, dc1-leaf1b, dc1-leaf1b]
+        profile: TENANT_A
+        port_channel:
+          mode: active

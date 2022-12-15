@@ -1,0 +1,37 @@
+---
+ztp:
+  default:
+    registration: 'http://192.168.1.209/ztp/bootstrap'
+    gateway: 192.168.1.254
+    nameservers:
+      - '192.168.1.254'
+  general:
+    subnets:
+      - network: 192.168.1.0
+        netmask: 255.255.255.0
+        gateway: 192.168.1.254
+        nameservers:
+          - '192.168.1.254'
+        start: 192.168.1.150
+        end: 192.168.1.160
+        lease_time: 300
+  clients:
+    # AVD/CVP Integration
+    - name: dc1-spine1
+      mac: '50:00:00:01:00:00'
+      ip4: 192.168.1.150
+    - name: dc1-spine2
+      mac: '50:00:00:02:00:00'
+      ip4: 192.168.1.151
+    - name: dc1-leaf1a
+      mac: '50:00:00:03:00:00'
+      ip4: 192.168.1.152
+    - name: dc1-leaf1b
+      mac: '50:00:00:04:00:00'
+      ip4: 192.168.1.153
+    - name: dc1-leaf2a
+      mac: '50:00:00:05:00:00'
+      ip4: 192.168.1.154
+    - name: dc1-leaf2b
+      mac: '50:00:00:06:00:00'
+      ip4: 192.168.1.155

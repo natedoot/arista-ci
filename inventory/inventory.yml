@@ -1,0 +1,80 @@
+---
+all:
+  children:
+    CVP:
+      hosts:
+        cvaas:
+          ansible_host: www.cv-staging.corp.arista.io
+          ansible_httpapi_host: www.cv-staging.corp.arista.io
+          ansible_user: cvaas
+          ansible_password: "{{lookup('file', '../inventory/cvaas.token')}}"
+          ansible_ssh_pass: "{{lookup('file', '../inventory/cvaas.token')}}"
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: True
+          ansible_httpapi_validate_certs: True
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          ansible_python_interpreter: $(which python3)
+        act_cvp:
+          ansible_httpapi_host: 10.255.28.119
+          ansible_host: 10.255.28.119
+          ansible_user: cvpadmin
+          ansible_password: arista123
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: true
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python3)
+        ztp:
+          ansible_host: 192.168.1.209
+          ansible_user: doot
+          ansible_password: arista123
+          ansible_become_password: arista123
+          ansible_python_interpreter: $(which python3)
+    dc:
+      children:
+        dc1:
+          children:
+            dc1_fabric:
+              children:
+                dc1_spines:
+                  hosts:
+                    dc1-spine1:
+                      ansible_host: 10.255.8.168
+                    dc1-spine2:
+                      ansible_host: 10.255.11.149
+                dc1_l3leafs:
+                  hosts:
+                    dc1-leaf1a:
+                      ansible_host: 10.255.77.135
+                    dc1-leaf1b:
+                      ansible_host: 10.255.21.128
+                    dc1-leaf2a:
+                      ansible_host: 10.255.5.252
+                    dc1-leaf2b:
+                      ansible_host: 10.255.104.97
+                  # children:
+                  #   idf_l3leafs:
+                  #     hosts:
+                  #       idf1-leaf1:
+                  #         ansible_host: 10.255.48.170
+                  #       idf1-leaf2:
+                  #         ansible_host: 10.255.17.211
+                  #       idf1-leaf3:
+                  #         ansible_host: 10.255.125.23
+              vars:
+                ansible_connection: httpapi
+                ansible_network_os: eos
+                ansible_user: cvpadmin
+                ansible_password: arista123
+              # should use vault for passwords
+                ansible_ssh_pass: arista123
+                ansible_become: true
+                ansible_become_method: enable
+                ansible_httpapi_use_ssl: true
+                ansible_httpapi_validate_certs: false
+            NETWORK_SERVICES:
+              children:
+                dc1_l3leafs:

@@ -1,0 +1,70 @@
+
+# Validate State Report
+
+**Table of Contents:**
+
+- [Validate State Report](validate-state-report)
+  - [Test Results Summary](#test-results-summary)
+  - [Failed Test Results Summary](#failed-test-results-summary)
+  - [All Test Results](#all-test-results)
+
+## Test Results Summary
+
+### Summary Totals
+
+| Total Tests | Total Tests Passed | Total Tests Failed |
+| ----------- | ------------------ | ------------------ |
+| 19 | 10 | 9 |
+
+### Summary Totals Devices Under Tests
+
+| DUT | Total Tests | Tests Passed | Tests Failed | Categories Failed |
+| --- | ----------- | ------------ | ------------ | ----------------- |
+| dc1-spine1 |  19 | 10 | 9 | NTP, BGP |
+
+### Summary Totals Per Category
+
+| Test Category | Total Tests | Tests Passed | Tests Failed |
+| ------------- | ----------- | ------------ | ------------ |
+| NTP |  1 | 0 | 1 |
+| Interface State |  5 | 5 | 0 |
+| LLDP Topology |  4 | 4 | 0 |
+| BGP |  9 | 1 | 8 |
+
+## Failed Test Results Summary
+
+| Test ID | Node | Test Category | Test Description | Test | Test Result | Failure Reason |
+| ------- | ---- | ------------- | ---------------- | ---- | ----------- | -------------- |
+| 1 | dc1-spine1 | NTP | Synchronised with NTP server | NTP | FAIL | Not synchronised to NTP server |
+| 12 | dc1-spine1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 172.31.255.1 | FAIL | Session state Active |
+| 13 | dc1-spine1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 172.31.255.5 | FAIL | Session state Active |
+| 14 | dc1-spine1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 172.31.255.9 | FAIL | Session state Active |
+| 15 | dc1-spine1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 172.31.255.13 | FAIL | Session state Active |
+| 16 | dc1-spine1 | BGP | bgp evpn peer state established (evpn) | bgp_neighbor: 192.168.255.3 | FAIL | Session state Connect |
+| 17 | dc1-spine1 | BGP | bgp evpn peer state established (evpn) | bgp_neighbor: 192.168.255.4 | FAIL | Session state Connect |
+| 18 | dc1-spine1 | BGP | bgp evpn peer state established (evpn) | bgp_neighbor: 192.168.255.5 | FAIL | Session state Connect |
+| 19 | dc1-spine1 | BGP | bgp evpn peer state established (evpn) | bgp_neighbor: 192.168.255.6 | FAIL | Session state Connect |
+
+## All Test Results
+
+| Test ID | Node | Test Category | Test Description | Test | Test Result | Failure Reason |
+| ------- | ---- | ------------- | ---------------- | ---- | ----------- | -------------- |
+| 1 | dc1-spine1 | NTP | Synchronised with NTP server | NTP | FAIL | Not synchronised to NTP server |
+| 2 | dc1-spine1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet1 - P2P_LINK_TO_DC1-LEAF1A_Ethernet1 | PASS | - |
+| 3 | dc1-spine1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet2 - P2P_LINK_TO_DC1-LEAF1B_Ethernet1 | PASS | - |
+| 4 | dc1-spine1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet3 - P2P_LINK_TO_DC1-LEAF2A_Ethernet1 | PASS | - |
+| 5 | dc1-spine1 | Interface State | Ethernet Interface & Line Protocol == "up" | Ethernet4 - P2P_LINK_TO_DC1-LEAF2B_Ethernet1 | PASS | - |
+| 6 | dc1-spine1 | Interface State | Loopback Interface Status & Line Protocol == "up" | Loopback0 - EVPN_Overlay_Peering | PASS | - |
+| 7 | dc1-spine1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet1 - remote: dc1-leaf1a_Ethernet1 | PASS | - |
+| 8 | dc1-spine1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet2 - remote: dc1-leaf1b_Ethernet1 | PASS | - |
+| 9 | dc1-spine1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet3 - remote: dc1-leaf2a_Ethernet1 | PASS | - |
+| 10 | dc1-spine1 | LLDP Topology | LLDP topology - validate peer and interface | local: Ethernet4 - remote: dc1-leaf2b_Ethernet1 | PASS | - |
+| 11 | dc1-spine1 | BGP | ArBGP is configured and operating | ArBGP | PASS | - |
+| 12 | dc1-spine1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 172.31.255.1 | FAIL | Session state Active |
+| 13 | dc1-spine1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 172.31.255.5 | FAIL | Session state Active |
+| 14 | dc1-spine1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 172.31.255.9 | FAIL | Session state Active |
+| 15 | dc1-spine1 | BGP | ip bgp peer state established (ipv4) | bgp_neighbor: 172.31.255.13 | FAIL | Session state Active |
+| 16 | dc1-spine1 | BGP | bgp evpn peer state established (evpn) | bgp_neighbor: 192.168.255.3 | FAIL | Session state Connect |
+| 17 | dc1-spine1 | BGP | bgp evpn peer state established (evpn) | bgp_neighbor: 192.168.255.4 | FAIL | Session state Connect |
+| 18 | dc1-spine1 | BGP | bgp evpn peer state established (evpn) | bgp_neighbor: 192.168.255.5 | FAIL | Session state Connect |
+| 19 | dc1-spine1 | BGP | bgp evpn peer state established (evpn) | bgp_neighbor: 192.168.255.6 | FAIL | Session state Connect |
