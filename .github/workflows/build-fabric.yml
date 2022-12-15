@@ -27,14 +27,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@main
-
       # Building the new configuration in the output directory
       - name: Run fabric build ansible playbook
-        shell: bash
-        run: |
-          ls
-          pip install -r requirements-dev.txt
-          pip install -r requirements.txt
-          cd arista-ci
-          ansible-playbook -i inventory/inventory.yml playbooks/pb_build_config.yml --tags build
+        uses: docker://avdteam/avd-all-in-one
+      - name: run playbook
+        run: ansible-playbook -i arista-ci/inventory/inventory.yml arista-ci/playbooks/pb_build_config.yml --tags build
           
