@@ -31,4 +31,4 @@ jobs:
       # Building the new configuration in the output directory
       - name: Run fabric build ansible playbook
         shell: bash
-        run: ansible-playbook -i dc-lab/inventory/inventory.yml dc-lab/playbooks/pb_build_config.yml --tags build
+        run: echo "ansible --version"
