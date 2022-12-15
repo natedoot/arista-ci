@@ -6,8 +6,6 @@
   collections:
     - arista.avd
     - arista.cvp
-  vars:
-    root_dir: './output'
 
   tasks:
     - name: 'reset local folders for output'
