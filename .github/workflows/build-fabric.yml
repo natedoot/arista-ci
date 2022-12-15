@@ -31,5 +31,6 @@ jobs:
       - name: Run fabric build ansible playbook
         uses: docker://avdteam/avd-all-in-one
       - name: run playbook
+        shell: bash
         run: ansible-playbook -i arista-ci/inventory/inventory.yml arista-ci/playbooks/pb_build_config.yml --tags build
           
