@@ -31,4 +31,4 @@ jobs:
       # Building the new configuration in the output directory
       - name: Run fabric build ansible playbook
         shell: bash
-        run: echo "ansible --version"
+        run: ansible --version
