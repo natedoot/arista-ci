@@ -21,11 +21,12 @@ jobs:
     runs-on: self-hosted
     container: 
       image: avdteam/avd-all-in-one
+      volumes:
+        - /home/doot/actions-runner/_work/arista-ci:/home/avd/projects/
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@main
-      - uses: docker://avdteam/avd-all-in-one
 
       # Building the new configuration in the output directory
       - name: Run fabric build ansible playbook
