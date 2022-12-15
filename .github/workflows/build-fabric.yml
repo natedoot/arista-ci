@@ -31,4 +31,10 @@ jobs:
       # Building the new configuration in the output directory
       - name: Run fabric build ansible playbook
         shell: bash
-        run: ansible --version
+        run: |
+          ls
+          pip install -r requirements-dev.txt
+          pip install -r requirements.txt
+          cd arista-ci
+          ansible-playbook -i inventory/inventory.yml playbooks/pb_build_config.yml --tags build
+          
