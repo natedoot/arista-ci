@@ -31,9 +31,15 @@ jobs:
       # Building the new configuration in the output directory
       - name: run playbook
         shell: bash
-        run: echo "ansible-playbook -i arista-ci/inventory/inventory.yml arista-ci/playbooks/pb_build_config.yml --tags build"
+        run: echo "ansible-playbook -i arista-ci/inventory/inventory.yml arista-ci/playbooks/pb_build_config.yml --tags build" >> build-intended.txt
       - name: show files
         shell: bash
         run: |
             echo "ls *"
             echo "pwd"
+      
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-intended
+          path: build-intended.txt
