@@ -26,14 +26,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@main
+      - name: checkout git repo
+        uses: actions/checkout@main
       # Building the new configuration in the output directory
       - name: run playbook
         shell: bash
         run: echo "ansible-playbook -i arista-ci/inventory/inventory.yml arista-ci/playbooks/pb_build_config.yml --tags build"
-      - name: Upload math result for job 1
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-intended
-          path: ~/arista-ci/inventory/intended/
-          
+      - name: show files
+        shell: bash
+        run: |
+            echo "ls *"
+            echo "pwd"
